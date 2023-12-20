@@ -61,7 +61,7 @@
             class="form-control"
           />
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="fileInput">Image</label>
           <div
             cloudName="pitz"
@@ -70,7 +70,17 @@
           >
             <input type="file" class="form-control" id="fileInput" />
           </div>
-        </div>
+        </div> -->
+        <main class="main">
+  
+
+          <div>
+    <button @click="onClick">Upload</button>
+    <img v-if="uploadedImageUrl" :src="uploadedImageUrl" alt="Uploaded Image">
+  </div>
+   
+</main>
+
 
 
         <div class="mb-3">
@@ -89,7 +99,10 @@
 
 <script>
 import axios from "axios";
+import { ref, onMounted, defineEmits } from "vue";
 import { Cloudinary } from 'cloudinary-vue';
+
+const emit = defineEmits(["on-upload"]);
 
 export default {
   name: "booksCreate",
@@ -111,9 +124,51 @@ export default {
           image: null,
         },
       },
+      cloudinary: null,
+      widget: null,
+      uploadedImageUrl: null,
     };
   },
   methods: {
+    onMounted() {
+      if (!this.cloudinary && window.cloudinary) {
+        this.cloudinary = window.cloudinary;
+      }
+
+      const onIdle = () => {
+        if (!this.widget) {
+          this.widget = this.createWidget();
+        }
+      };
+
+      "requestIdleCallback" in window
+        ? requestIdleCallback(onIdle)
+        : setTimeout(onIdle, 10);
+    },
+    createWidget() {
+      if (!this.cloudinary) {
+        console.error("Cloudinary is not defined");
+        return null;
+      }
+
+      const options = {
+        cloudName: "pitz",
+        uploadPreset: "peter-main",
+      };
+
+      return this.cloudinary.createUploadWidget(options, (error, result) => {
+        if (error || result.event === "success") {
+          this.handleImageChange(result);
+          emit("on-upload", { error, result, widget: this.widget });
+        }
+      });
+    },
+    onClick() {
+      if (!this.widget) {
+        this.widget = this.createWidget();
+      }
+      this.widget && this.widget.open();
+    },
     saveBooks() {
       const formData = new FormData();
 
@@ -134,7 +189,31 @@ export default {
     handleImageChange(response) {
       const imageUrl = response.info.secure_url;
       this.model.books.image = imageUrl;
+      this.uploadedImageUrl = imageUrl;  // Optionally, update the uploadedImageUrl if needed
     },
+  },
+  mounted() {
+    this.onMounted();
   },
 };
 </script>
+
+<style scoped>
+.container {
+  width: 100%;
+  max-width: 1024px;
+  padding: 0 1em;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.subtitle {
+  font-weight: normal;
+  text-align: center;
+  margin: -1em 0 2em;
+}
+</style>

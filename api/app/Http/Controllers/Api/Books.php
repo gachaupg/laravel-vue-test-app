@@ -16,7 +16,6 @@ class Books extends Controller
     if ($books->count() > 0) {
         foreach ($books as $book) {
             // Remove base64 encoding and provide the image URL
-            $book->image_url = asset("storage/images/{$book->image}");
         }
 
         $data = [
@@ -61,11 +60,7 @@ class Books extends Controller
     // Process the valid request data
     try {
         // Handle file upload
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images'); // Adjust the storage path as needed
-        } else {
-            $imagePath = null; // Set to null if no image is provided
-        }
+
 
         // Create a new book record in the database
         $book = new BooksModel([
@@ -88,7 +83,6 @@ class Books extends Controller
             'status' => 200,
             'message' => 'Book added successfully',
             'book' => $book, // Include the book information in the response
-            'image_url' => $imagePath ? asset("storage/{$imagePath}") : null, // Include the image URL in the response
         ], 200);
     } catch (\Exception $e) {
         // Handle any exceptions

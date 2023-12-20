@@ -17,7 +17,7 @@
             <div v-for="(book, index) in books" :key="index" class="card mb-3" style="max-width: 300px">
               <div class="row g-0">
                 <img
-                  src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600"
+                :src="book.image ? book.image : 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600'"
                   class="img"
                   :alt="book.name"
                 />
