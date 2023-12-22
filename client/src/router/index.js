@@ -66,6 +66,14 @@ const router = createRouter({
       component: () => import('../views/NewBookView.vue')
     },
     {
+      path: '/extend/:id',
+      name: 'Ex',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/Extend.vue')
+    },
+    {
       path: '/admin',
       name: 'Admin',
       // route level code-splitting
@@ -96,8 +104,21 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/EditUser.vue')
-    }
+    },
+    
+  
+  
+ 
   ]
-})
 
+  
+})
+// const router = createRouter({
+//   history: createWebHashHistory(process.env.BASE_URL),
+//   routes,
+//   scrollBehavior() {
+//     // always scroll to top
+//     return { top: 0 }
+//   },
+// })
 export default router

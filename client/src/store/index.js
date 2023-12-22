@@ -8,12 +8,23 @@ export default createStore({
 // State object contains all the reactive data that we want to share across components
 state: {
 // Initialize isLoggedIn from localStorage to persist login status across page refreshes
-isLoggedIn: !!localStorage.getItem('token')
+isLoggedIn: !!localStorage.getItem('token'),
+sidebarVisible: '',
+sidebarUnfoldable: false,
 },
 // Mutations are functions that directly mutate the state.
 // Each mutation handler gets the entire state tree as the first argument.
 mutations: {
 // Mutation to set isLoggedIn to true
+toggleSidebar(state) {
+    state.sidebarVisible = !state.sidebarVisible
+  },
+  toggleUnfoldable(state) {
+    state.sidebarUnfoldable = !state.sidebarUnfoldable
+  },
+  updateSidebarVisible(state, payload) {
+    state.sidebarVisible = payload.value
+  },
 LOGIN(state) {
 state.isLoggedIn = true
 },
@@ -38,6 +49,8 @@ dispatch('navigateToLogin');
 // Action to navigate to login route using Vue Router
 navigateToLogin() {
 router.push({ name: 'Login' });
-}
-}
+},
+
+},actions: {},
+modules: {},
 })

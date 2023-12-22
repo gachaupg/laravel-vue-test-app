@@ -75,8 +75,8 @@
   
 
           <div>
-    <button @click="onClick">Upload</button>
-    <img v-if="uploadedImageUrl" :src="uploadedImageUrl" alt="Uploaded Image">
+    <button  style="width: 100%"
+            class="btn btn-info" @click="onClick">Upload</button>
   </div>
    
 </main>
@@ -91,6 +91,8 @@
           >
             Save the details
           </button>
+          <img v-if="uploadedImageUrl" :src="uploadedImageUrl" alt="Uploaded Image">
+
         </div>
       </div>
     </div>

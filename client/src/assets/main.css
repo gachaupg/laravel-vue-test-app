@@ -1,4 +1,24 @@
 @import './base.css';
 @import 'bootstrap';
-
-
+body{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+/* background-color: rgb(160, 159, 161) !important; */
+}
+.main{
+    background-color: rgb(184, 185, 187) !important;
+    /* height: 200vh; */
+    /* padding-bottom: 3rem; */
+    /* padding: 1rem; */
+}
+#bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* optional background color */
+    padding: 10px; /* optional padding */
+  }

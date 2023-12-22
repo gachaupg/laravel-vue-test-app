@@ -36,15 +36,22 @@
                   <hr>
                   <p style="display: flex; align-items: center; justify-content: space-between;" class="card-text">
                     <p>{{ book.pages }} pages</p>
-                    <RouterLink
-                      style="width: 8.5rem; margin-bottom: 1px;"
-                      :to="{path:'/books/'+book.id +'/borrow'}"
-                      class="btn btn-success"
-                    >
-                      Borrow a book
-                    </RouterLink>
+         
+                    <div>
+    <RouterLink
+      v-if="book.penalty_amount === 0"
+      style="width: 100%; margin-bottom: 1px;"
+      :to="{ path: '/books/' + book.id + '/borrow' }"
+      class="btn btn-success"
+    >
+      Borrow a book
+    </RouterLink>
+    <p style="color: brown;" v-else>Book already borrowed</p>
+    
+  </div>
                     <!-- Add any additional elements or data you want to display -->
                   </p>
+                  
                 </div>
               </div>
             </div>

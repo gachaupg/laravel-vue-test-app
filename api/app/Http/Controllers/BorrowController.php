@@ -124,7 +124,30 @@ class BorrowController extends Controller
             ], 400);
         }
     }
+    public function exstate($id, Request $request)
+{
+    $book = Borrow::find($id);
 
+    if (!$book) {
+        return response()->json([
+            'status' => 404,
+            'message' => 'Book not found',
+        ], 404);
+    }
+
+    if ($book->update(['return_dates' => ''])) {
+        return response()->json([
+            'status' => 200,
+            'message' => 'Updated successfully',
+            'book' => $book,
+        ], 200);
+    } else {
+        return response()->json([
+            'status' => 400,
+            'message' => 'Error when updating',
+        ], 400);
+    }
+}
     public function show($id)
     {
         $book = Borrow::find($id);

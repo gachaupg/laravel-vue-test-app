@@ -10,10 +10,10 @@
           <label for="">Name of the book</label>
           <input v-model="model.books.name" type="text" class="form-control" />
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="">Extended</label>
           <input v-model="model.books.extended" type="text" class="form-control" />
-        </div>
+        </div> -->
         <div class="mb-3">
           <label for="">Borrowed at</label>
           <input v-model="model.books.loan_date" type="date" class="form-control" />
@@ -22,10 +22,10 @@
           <label for="">Return Date</label>
           <input v-model="model.books.return_date" type="date" class="form-control" />
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="">Extension date</label>
           <input v-model="model.books.extension_date" type="date" class="form-control" />
-        </div>
+        </div> -->
         <div class="mb-3">
           <label for="">Added by</label>
           <input v-model="model.books.added_by" type="text" class="form-control" />
@@ -34,10 +34,10 @@
           <label for="">Number of pages</label>
           <input v-model="model.books.pages" type="number" class="form-control" />
         </div>
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="">Image</label>
           <input v-model="model.books.image" type="text" class="form-control" />
-        </div>
+        </div> -->
 
         <div class="mb-3">
           <button @click="saveBooks" style="width: 100%" class="btn btn-secondary">
@@ -61,15 +61,15 @@ export default {
           bookId: "",
           name: "",
           book_id: this.$route.params.id,
-          extended: "",
-          extension_date: "",
+          // extended: "",
+          // extension_date: "",
           penalty_amount: "200",
           added_by: "",
           user_id: "", // Initialize with an empty string
           loan_date: "",
           return_date: "",
           pages: 0,
-          image: "",
+          // image: "",
         },
       },
 

@@ -44,3 +44,4 @@ Route::delete('borrow/{id}' ,[BorrowController::class,'destroy']);
 Route::put('borrow/{id}' ,[BorrowController::class,'update']);
 Route::get('borrow/{id}' ,[BorrowController::class,'show']);
 Route::put('borrow/return/{id}' ,[BorrowController::class,'updatereturn']);
+Route::put('borrow/extend/{id}' ,[BorrowController::class,'exstate']);
