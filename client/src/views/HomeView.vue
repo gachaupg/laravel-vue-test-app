@@ -46,10 +46,9 @@
     >
       Borrow a book
     </RouterLink>
-    <p style="color: brown;" v-else>Book already borrowed</p>
+    <p style="color: brown;" v-else>Book already borrowed </p>
     
   </div>
-                    <!-- Add any additional elements or data you want to display -->
                   </p>
                   
                 </div>
